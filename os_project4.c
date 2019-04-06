@@ -40,7 +40,7 @@ int main()
 	int p[20],bt[20], su[20], wt[20],tat[20], k, n, temp;
 	float wtavg, tatavg;
 	printf("************************we have 1 teacher process and 3 student process******************************\n");
-	printf("\n");
+	printf("\t\n");
 	for(i=0;i<4;i++)
 	{
 		p[i]=1;
