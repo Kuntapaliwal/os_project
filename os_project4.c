@@ -1,41 +1,43 @@
 #include<stdio.h>
 #include<unistd.h>
-struct resource
+struct resources
 {
-	int pen;
-	int paper;
-	int q_paper;
+	int p;
+	int pp;
+	int q_pp;
 	int allot_id;
 
 };
 struct resource_count{
 	
-	int pen_count ;
-	int paper_count ;
-	int q_paper_count ;
+	int p_count ;
+	int pp_count ;
+	int q_pp_count ;
 }; 
 
 struct resource_count c[3];
 
-void allotment(struct resource a)
+void allot(struct resource r)
 {
-	if(a.allot_id == 0)
+	
+			
+	if(r.allot_id == 0)
 	{
-		a.pen=1;
+		r.p=1;
 	}
-	else if(a.allot_id == 1)
+	else if(r.allot_id == 1)
 	{
-		a.paper=1;
+		r.pp=1;
 	}
-	else if(a.allot_id == 2)
+	else if(r.allot_id == 2)
 	{
-		a.q_paper=1;
+		r.q_pp=1;
 	}
 	
 }
 int main()
 {
-	struct resource s[3];
+	struct resource r[3];
 	int i,j,count=0;
 	int p[20],bt[20], su[20], wt[20],tat[20], k, n, temp;
 	float wtavg, tatavg;
@@ -57,65 +59,68 @@ int main()
 	}
 	for(i=0;i<3;i++)
 	{
-		s[i].allot_id=i;
-		allotment(s[i]);
+		r[i].allot_id=i;
+		allot(r[i]);
 	}
 		printf("\nResources alloted to students are:");
 	for(i=0;i<3;i++)
 	{
-		if(s[i].pen == 1)
+		if(r[i].p == 1)
 		printf("\nResources alloted to student %d are:pen ",i+1);
 		
-		if(s[i].paper==1)
+		if(r[i].pp==1)
 		printf("\nResources alloted to student %d are:paper ",i);
 		
-		if(s[i].q_paper == 1)
+		if(r[i].q_pp == 1)
 		printf("\nResources alloted to student %d are:question paper ",i+1);
 	}
 		while(count != 3)
 		{
 			for(i=0;i<3;i++)
 			{
-				if(i=0)
-				{
-					c[i].paper_count=1;
-					c[i].pen_count=1;
+				switch{
+					case 0:
+				
+					c[i].pp_count=1;
+					c[i].p_count=1;
 					for(j=0;j<3;j++)
 					{
-						if(s[j].q_paper==1)
+						if(s[j].q_pp==1)
 						{
 						printf("\nStudent %d has completed his job !",j+1);
 						count++;
 						}
 					}
-				}
-			if(i=1)
-			{
-				c[i].q_paper_count=1;
-				c[i].pen_count=1;
+				break;
+					case 1:
+			
+				c[i].q_pp_count=1;
+				c[i].p_count=1;
 				for(j=0;j<3;j++)
 				{
-					if(s[j].paper==1)
+					if(r[j].pp==1)
 					{
 						printf("\nStudent %d has completed his job !",j+1);
 						count++;
 					}
 				}
-			}
+			break;
 		
-			if(i=2)
-			{
-				c[i].paper_count=1;
-				c[i].q_paper_count=1;
+					case 2:
+			
+				c[i].pp_count=1;
+				c[i].q_pp_count=1;
 				for(j=0;j<3;j++)
 				{
-					if(s[j].pen==1)
+					if(r[j].p==1)
 					{
 						printf("\nStudent %d has completed his job !",j+1);
 						count++;
 					}
 				}
-			}
+			break:
+				}
+						
 	}	}	
 	for(i=0;i<4;i++)
 	{
@@ -139,7 +144,7 @@ int main()
 	}
 	wtavg = wt[0] = 0;
 	tatavg = tat[0] = bt[0];
-	for(i=1;i<n;i++)
+	for(i=1;i<4;i++)
 	{
 		wt[i] = wt[i-1] + bt[i-1];
 		tat[i] = tat[i-1] + bt[i];
